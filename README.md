@@ -10,7 +10,7 @@ Prof: Dr. Horacio Kuna
 Dictado: OCT23-24
 
 
-Inicio de la Actividad Práctica I: 2024
+Inicio de la Actividad Práctica I
 Alumna: Evelin Morales
 
 ## Descripción del contenido

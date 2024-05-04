@@ -9,6 +9,10 @@ Universidad Internacional de Valencia*
 Prof: Dr. Horacio Kuna
 Dictado: OCT23-24
 
+
+Inicio de la Actividad Práctica I
+Alumna: Evelin Morales
+
 ## Descripción del contenido
 
 Carpetas:

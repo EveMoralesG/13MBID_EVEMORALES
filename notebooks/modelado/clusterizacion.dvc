@@ -1,0 +1,6 @@
+outs:
+- md5: e1466853bb80726d4d74bff941a88ab3.dir
+  size: 27411
+  nfiles: 18
+  hash: md5
+  path: clusterizacion

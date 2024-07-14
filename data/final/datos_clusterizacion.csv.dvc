@@ -1,5 +1,5 @@
 outs:
-- md5: fb261c680b30334bc3067ce019bcf541
-  size: 2232658
+- md5: 9b42d7438be7626c8514419a14c4e438
+  size: 2081580
   hash: md5
   path: datos_clusterizacion.csv

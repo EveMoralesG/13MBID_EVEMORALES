@@ -9,7 +9,7 @@ df = pd.read_csv("../../../data/final/datos_finales.csv", sep=";")
 # Título del dashboard
 st.write("# 13MBID - Visualización de datos")
 st.write("## Panel de visualización generado sobre los datos de créditos y tarjetas emitidas a clientes de la entidad")
-st.write("#### Persona/s: ................")
+st.write("#### Persona/s: Evelin Beatriz Morales Guamán")
 st.write("----")
 
 # Gráficos
@@ -60,11 +60,6 @@ else:
 st.write(f"Cantidad de créditos con estas condiciones: {df_filtrado.shape[0]}")
 st.plotly_chart(fig)
 
-# Histograma de los importes de créditos otorgados
-histograma_importes = px.histogram(df, x='importe_solicitado', nbins=10, title='Importes solicitados en créditos')
-histograma_importes.update_layout(xaxis_title='Importe solicitado', yaxis_title='Cantidad')
-st.plotly_chart(histograma_importes)
-
 
 # Gráfico obtenido desde Detail
 # remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
@@ -83,6 +78,120 @@ figure = go.Figure(data=charts, layout=go.Layout({
     'legend': {'orientation': 'h'},
     'title': {'text': 'limite_credito_tc Value Counts'},
     'xaxis': {'title': {'text': 'limite_credito_tc'}},
+    'yaxis': {'title': {'text': 'Frequency'}}
+}))
+
+# If you're having trouble viewing your chart in your notebook try passing your 'chart' into this snippet:
+#
+# from plotly.offline import iplot, init_notebook_mode
+#
+# init_notebook_mode(connected=True)
+# for chart in charts:
+#     chart.pop('id', None) # for some reason iplot does not like 'id'
+# iplot(figure)
+st.plotly_chart(figure)
+
+# DISCLAIMER: 'df' refers to the data you passed in when calling 'dtale.show'
+
+import numpy as np
+import pandas as pd
+import plotly.graph_objs as go
+
+if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+	df = df.to_frame(index=False)
+
+# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+df = df.reset_index().drop('index', axis=1, errors='ignore')
+df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+s = df[~pd.isnull(df['situacion_vivienda'])]['situacion_vivienda']
+chart = pd.value_counts(s).to_frame(name='data')
+chart['percent'] = (chart['data'] / chart['data'].sum()) * 100
+chart.index.name = 'labels'
+chart = chart.reset_index().sort_values(['data', 'labels'], ascending=[False, True])
+chart = chart[:100]
+charts = [go.Bar(x=chart['labels'].values, y=chart['data'].values, name='Frequency')]
+figure = go.Figure(data=charts, layout=go.Layout({
+    'barmode': 'group',
+    'legend': {'orientation': 'h'},
+    'title': {'text': 'situacion_vivienda Value Counts'},
+    'xaxis': {'title': {'text': 'situacion_vivienda'}},
+    'yaxis': {'title': {'text': 'Frequency'}}
+}))
+
+# If you're having trouble viewing your chart in your notebook try passing your 'chart' into this snippet:
+#
+# from plotly.offline import iplot, init_notebook_mode
+#
+# init_notebook_mode(connected=True)
+# for chart in charts:
+#     chart.pop('id', None) # for some reason iplot does not like 'id'
+# iplot(figure)
+st.plotly_chart(figure)
+
+# DISCLAIMER: 'df' refers to the data you passed in when calling 'dtale.show'
+
+import numpy as np
+import pandas as pd
+import plotly.graph_objs as go
+
+if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+	df = df.to_frame(index=False)
+
+# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+df = df.reset_index().drop('index', axis=1, errors='ignore')
+df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+s = df[~pd.isnull(df['antiguedad_cliente'])]['antiguedad_cliente']
+chart = pd.value_counts(s).to_frame(name='data')
+chart['percent'] = (chart['data'] / chart['data'].sum()) * 100
+chart.index.name = 'labels'
+chart = chart.reset_index().sort_values(['data', 'labels'], ascending=[False, True])
+chart = chart[:100]
+charts = [go.Bar(x=chart['labels'].values, y=chart['data'].values, name='Frequency')]
+figure = go.Figure(data=charts, layout=go.Layout({
+    'barmode': 'group',
+    'legend': {'orientation': 'h'},
+    'title': {'text': 'antiguedad_cliente Value Counts'},
+    'xaxis': {'title': {'text': 'antiguedad_cliente'}},
+    'yaxis': {'title': {'text': 'Frequency'}}
+}))
+
+# If you're having trouble viewing your chart in your notebook try passing your 'chart' into this snippet:
+#
+# from plotly.offline import iplot, init_notebook_mode
+#
+# init_notebook_mode(connected=True)
+# for chart in charts:
+#     chart.pop('id', None) # for some reason iplot does not like 'id'
+# iplot(figure)
+st.plotly_chart(figure)
+
+# DISCLAIMER: 'df' refers to the data you passed in when calling 'dtale.show'
+
+import numpy as np
+import pandas as pd
+import plotly.graph_objs as go
+
+if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+	df = df.to_frame(index=False)
+
+# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+df = df.reset_index().drop('index', axis=1, errors='ignore')
+df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+s = df[~pd.isnull(df['ingresos'])]['ingresos']
+chart = pd.value_counts(s).to_frame(name='data')
+chart['percent'] = (chart['data'] / chart['data'].sum()) * 100
+chart.index.name = 'labels'
+chart = chart.reset_index().sort_values(['data', 'labels'], ascending=[False, True])
+chart = chart[:100]
+charts = [go.Bar(x=chart['labels'].values, y=chart['data'].values, name='Frequency')]
+figure = go.Figure(data=charts, layout=go.Layout({
+    'barmode': 'group',
+    'legend': {'orientation': 'h'},
+    'title': {'text': 'ingresos Value Counts'},
+    'xaxis': {'title': {'text': 'ingresos'}},
     'yaxis': {'title': {'text': 'Frequency'}}
 }))
 
